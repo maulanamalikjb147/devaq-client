@@ -13,7 +13,15 @@
   <a class="skip" href="#utama">Skip to content</a>
   <header class="site-header"><div class="wrap masthead">
     <a class="wordmark" href="index.html" aria-label="You Company home"><img src="assets/ikon.png" width="40" height="40" alt=""><span>You Company</span></a>
-    <nav class="primary-nav" aria-label="Main navigation">
+    <div class="header-right">
+      <a class="button quiet guide-link header-guide-desktop" href="mitra.html">Buyer guide</a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+    <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="#why-us">Why Us</a>
       <a href="#produk">Products</a>
@@ -21,8 +29,8 @@
       <a href="impor.html">Imports</a>
       <a href="#faq">FAQ</a>
       <a href="#kontak">Get in Touch</a>
+      <a class="button quiet guide-link mobile-guide-link" href="mitra.html">Buyer guide</a>
     </nav>
-    <a class="button quiet guide-link" href="mitra.html">Buyer guide</a>
   </div></header>
   <main id="utama">
     <section class="film-hero" aria-labelledby="judul">
@@ -271,31 +279,33 @@
         <div class="contact-form-panel">
           <h3>Request Quotation or Sample Parcel</h3>
           <p>Complete the brief form below and our sourcing coordinator will review your requirements and send a lot-specific quote.</p>
-          <form class="inquiry-form" id="trade-inquiry-form" onsubmit="event.preventDefault(); document.getElementById('form-feedback').style.display='block';">
+          <form class="inquiry-form" id="trade-inquiry-form" name="trade-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="event.preventDefault(); const form = this; fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() }).catch(() => {}).finally(() => { document.getElementById('form-feedback').style.display='block'; form.reset(); });">
+            <input type="hidden" name="form-name" value="trade-inquiry">
+            <p style="display:none"><label>Don't fill this out if you're human: <input name="bot-field"></label></p>
             <div class="form-row">
               <div class="form-group">
                 <label for="buyer-name">Full name <span>*</span></label>
-                <input class="form-control" type="text" id="buyer-name" required placeholder="e.g. Johnathan Vance">
+                <input class="form-control" type="text" id="buyer-name" name="name" required placeholder="e.g. Johnathan Vance">
               </div>
               <div class="form-group">
                 <label for="buyer-company">Company / Organization <span>*</span></label>
-                <input class="form-control" type="text" id="buyer-company" required placeholder="e.g. Atlas Commodities Ltd.">
+                <input class="form-control" type="text" id="buyer-company" name="company" required placeholder="e.g. Atlas Commodities Ltd.">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="buyer-email">Work email <span>*</span></label>
-                <input class="form-control" type="email" id="buyer-email" required placeholder="name@company.com">
+                <input class="form-control" type="email" id="buyer-email" name="email" required placeholder="name@company.com">
               </div>
               <div class="form-group">
                 <label for="buyer-phone">Phone / WhatsApp <span>*</span></label>
-                <input class="form-control" type="tel" id="buyer-phone" required placeholder="+1 555-0199 or +62...">
+                <input class="form-control" type="tel" id="buyer-phone" name="phone" required placeholder="+1 555-0199 or +62...">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="inquiry-product">Product of interest <span>*</span></label>
-                <select class="form-control" id="inquiry-product" required>
+                <select class="form-control" id="inquiry-product" name="product" required>
                   <option value="" disabled selected>Select catalog grade or packaging format</option>
                   <option value="CH01 - Hardwood Lump Charcoal">CH01 · Hardwood Lump Charcoal (Bulk / Sacks)</option>
                   <option value="CH02 - Coconut Charcoal Cubes (1kg Retail)">CH02 · Coconut Charcoal Cubes (1kg Retail Box)</option>
@@ -309,7 +319,7 @@
               </div>
               <div class="form-group">
                 <label for="target-volume">Target volume / quantity <span>*</span></label>
-                <select class="form-control" id="target-volume" required>
+                <select class="form-control" id="target-volume" name="volume" required>
                   <option value="" disabled selected>Estimated order quantity</option>
                   <option value="Sample Parcel (Evaluation)">Sample Parcel (1–2 kg Evaluation)</option>
                   <option value="Trial Order (500kg - 2 Tons)">Trial Order (500 kg – 2 MT)</option>
@@ -322,11 +332,11 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="destination-port">Destination port &amp; country <span>*</span></label>
-                <input class="form-control" type="text" id="destination-port" required placeholder="e.g. Port of Rotterdam, Netherlands">
+                <input class="form-control" type="text" id="destination-port" name="destination" required placeholder="e.g. Port of Rotterdam, Netherlands">
               </div>
               <div class="form-group">
                 <label for="target-incoterm">Preferred Incoterm</label>
-                <select class="form-control" id="target-incoterm">
+                <select class="form-control" id="target-incoterm" name="incoterm">
                   <option value="FOB - Free on Board">FOB (Tanjung Priok / Tanjung Perak)</option>
                   <option value="CIF - Cost, Insurance, Freight">CIF (Delivered to Destination Port)</option>
                   <option value="CFR - Cost and Freight">CFR</option>
@@ -336,7 +346,7 @@
             </div>
             <div class="form-group">
               <label for="order-notes">Specification details, pack requirements, or target delivery dates</label>
-              <textarea class="form-control" id="order-notes" placeholder="Please mention custom box dimensions, private label artwork needs, target arrival dates, or special laboratory tolerances..."></textarea>
+              <textarea class="form-control" id="order-notes" name="notes" placeholder="Please mention custom box dimensions, private label artwork needs, target arrival dates, or special laboratory tolerances..."></textarea>
             </div>
             <div class="form-footer">
               <p class="form-disclaimer">We respect commercial confidentiality. Your contact information is used strictly to prepare your technical quotation and schedule sample delivery.</p>
@@ -366,5 +376,25 @@
       <a href="index.html#kontak">Get in touch</a>
     </nav>
   </div></footer>
+  <script>
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var header = document.querySelector('.site-header');
+      if (!toggle || !header) return;
+      function toggleMenu() {
+        var isOpen = header.classList.toggle('nav-open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+      toggle.addEventListener('click', toggleMenu);
+      header.querySelectorAll('.primary-nav a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (header.classList.contains('nav-open')) toggleMenu();
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (header.classList.contains('nav-open') && !header.contains(e.target)) toggleMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
