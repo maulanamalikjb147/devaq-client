@@ -1,0 +1,35 @@
+PURCHASE INQUIRY
+PT You Company | Buyer guide
+
+Inquiry date:
+Buyer / company:
+Reply contact:
+
+Product and grade code:
+Intended use:
+Required material, form and dimensions:
+Specification limits and measurement basis:
+Flexible specifications:
+Approved sample or lot reference, if available:
+
+Sample quantity and unit:
+Planned commercial order quantity and unit:
+Minimum order quantity to confirm:
+Net weight or unit count per pack:
+Number of inner packs and outer cartons:
+Label requirements:
+Delivery city or port:
+Preferred handover point:
+Target arrival date and flexibility:
+
+Please include in the quotation:
+[ ] Product sheet and sample identification
+[ ] Unit price, currency and quotation validity
+[ ] Minimum order per grade
+[ ] Sample cost and dispatch terms
+[ ] Packing dimensions, net weight and gross weight
+[ ] Preparation time and estimated transit time
+[ ] Included freight charges and named delivery point
+
+Notes:
+Attachments (reference images, drawings or specifications):
